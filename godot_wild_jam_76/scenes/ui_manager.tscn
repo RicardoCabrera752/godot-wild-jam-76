@@ -1,0 +1,524 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxvhsjlonok8h"]
+
+[ext_resource type="Theme" uid="uid://dqgcru6js7q8m" path="res://assets/ui/main_theme.tres" id="1_jice0"]
+[ext_resource type="Script" path="res://scripts/UIManager.cs" id="1_os3nm"]
+
+[node name="UIManager" type="Node"]
+script = ExtResource("1_os3nm")
+
+[node name="MainMenuUI" type="CanvasLayer" parent="."]
+
+[node name="GameTitlePlaceholder" type="Label" parent="MainMenuUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -39.0
+offset_right = 39.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Hell Frost"
+horizontal_alignment = 1
+
+[node name="MainMenuButtons" type="Control" parent="MainMenuUI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jice0")
+
+[node name="MainMenuButtonsBackground" type="ColorRect" parent="MainMenuUI/MainMenuButtons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -84.0
+offset_right = 64.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.2484, 0.2484, 0.2484, 1)
+
+[node name="MainMenuButtonsContainer" type="VBoxContainer" parent="MainMenuUI/MainMenuButtons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -80.5
+offset_right = 60.0
+offset_bottom = 80.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGameButton" type="Button" parent="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="ControlsHelpButton" type="Button" parent="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer"]
+layout_mode = 2
+text = "Controls/Help"
+
+[node name="OptionsButton" type="Button" parent="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="CreditsButton" type="Button" parent="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="ExitGameButton" type="Button" parent="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer"]
+layout_mode = 2
+text = "Exit Game"
+
+[node name="StartMenuUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="StartMenuUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -760.0
+offset_top = -400.0
+offset_right = 760.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="TitlePlaceholder" type="Label" parent="StartMenuUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -399.5
+offset_right = 44.0
+offset_bottom = -376.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Game"
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="StartMenuUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 672.0
+offset_top = 318.0
+offset_right = 737.0
+offset_bottom = 347.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jice0")
+text = "Return"
+
+[node name="ControlsHelpUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="ControlsHelpUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -760.0
+offset_top = -400.0
+offset_right = 760.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="TitlePlaceholder" type="Label" parent="ControlsHelpUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -399.5
+offset_right = 44.0
+offset_bottom = -376.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Controls/Help"
+horizontal_alignment = 1
+
+[node name="GameControls" type="Control" parent="ControlsHelpUI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -20.0
+offset_right = -344.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jice0")
+
+[node name="Background" type="ColorRect" parent="ControlsHelpUI/GameControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -200.0
+offset_right = 140.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ControlsHelpUI/GameControls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -11.5
+offset_right = 34.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="PlayerTankInformation" type="Control" parent="ControlsHelpUI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jice0")
+
+[node name="Background" type="ColorRect" parent="ControlsHelpUI/PlayerTankInformation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -200.0
+offset_right = 140.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ControlsHelpUI/PlayerTankInformation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -11.5
+offset_right = 53.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Combat
+"
+horizontal_alignment = 1
+
+[node name="EnemiesInformation" type="Control" parent="ControlsHelpUI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 344.0
+offset_top = -20.0
+offset_right = 384.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jice0")
+
+[node name="Background" type="ColorRect" parent="ControlsHelpUI/EnemiesInformation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -200.0
+offset_right = 140.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ControlsHelpUI/EnemiesInformation"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -11.5
+offset_right = 34.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enemies"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="ControlsHelpUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = 225.5
+offset_right = 26.0
+offset_bottom = 254.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jice0")
+text = "Close"
+
+[node name="OptionsUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="OptionsUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -760.0
+offset_top = -400.0
+offset_right = 760.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="TitlePlaceholder" type="Label" parent="OptionsUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -399.5
+offset_right = 44.0
+offset_bottom = -376.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Options"
+horizontal_alignment = 1
+
+[node name="VolumeSlidersControl" type="Control" parent="OptionsUI"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jice0")
+
+[node name="Background" type="ColorRect" parent="OptionsUI/VolumeSlidersControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -80.0
+offset_right = 200.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VolumeSliderLabels" type="VBoxContainer" parent="OptionsUI/VolumeSlidersControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.5
+offset_top = -35.5
+offset_right = -32.5
+offset_bottom = 35.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="OptionsUI/VolumeSlidersControl/VolumeSliderLabels"]
+layout_mode = 2
+text = "Master Volume:"
+
+[node name="MusicVolumeLabel" type="Label" parent="OptionsUI/VolumeSlidersControl/VolumeSliderLabels"]
+layout_mode = 2
+text = "Music Volume:"
+
+[node name="SFXVolumeLabel" type="Label" parent="OptionsUI/VolumeSlidersControl/VolumeSliderLabels"]
+layout_mode = 2
+text = "SFX Volume:"
+
+[node name="VolumeSliders" type="VBoxContainer" parent="OptionsUI/VolumeSlidersControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -28.0
+offset_right = 192.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MasterVolumeSlider" type="HSlider" parent="OptionsUI/VolumeSlidersControl/VolumeSliders"]
+custom_minimum_size = Vector2(200, 16)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="MusicVolumeSlider" type="HSlider" parent="OptionsUI/VolumeSlidersControl/VolumeSliders"]
+custom_minimum_size = Vector2(200, 16)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="SFXVolumeSlider" type="HSlider" parent="OptionsUI/VolumeSlidersControl/VolumeSliders"]
+custom_minimum_size = Vector2(200, 16)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="CloseButton" type="Button" parent="OptionsUI/VolumeSlidersControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.0
+offset_top = 50.5
+offset_right = 26.0
+offset_bottom = 79.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Close"
+
+[node name="CreditsUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CreditsUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -760.0
+offset_top = -400.0
+offset_right = 760.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="TitlePlaceholder" type="Label" parent="CreditsUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -399.5
+offset_right = 44.0
+offset_bottom = -376.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="CreditsUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 672.0
+offset_top = 318.0
+offset_right = 737.0
+offset_bottom = 347.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jice0")
+text = "Return"
+
+[connection signal="pressed" from="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer/StartGameButton" to="." method="OnStartGameButtonPressed"]
+[connection signal="pressed" from="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer/ControlsHelpButton" to="." method="OnControlsHelpButtonPressed"]
+[connection signal="pressed" from="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer/OptionsButton" to="." method="OnOptionsButtonPressed"]
+[connection signal="pressed" from="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer/CreditsButton" to="." method="OnCreditsButtonPressed"]
+[connection signal="pressed" from="MainMenuUI/MainMenuButtons/MainMenuButtonsContainer/ExitGameButton" to="." method="OnExitGameButtonPressed"]
+[connection signal="pressed" from="StartMenuUI/ReturnButton" to="." method="OnReturnButtonPressed" binds= ["StartMenuUI"]]
+[connection signal="pressed" from="ControlsHelpUI/CloseButton" to="." method="OnCloseButtonPressed" binds= ["ControlsHelpUI"]]
+[connection signal="value_changed" from="OptionsUI/VolumeSlidersControl/VolumeSliders/MasterVolumeSlider" to="." method="OnMasterVolumeSliderValueChanged"]
+[connection signal="value_changed" from="OptionsUI/VolumeSlidersControl/VolumeSliders/MusicVolumeSlider" to="." method="OnMusicVolumeSliderValueChanged"]
+[connection signal="value_changed" from="OptionsUI/VolumeSlidersControl/VolumeSliders/SFXVolumeSlider" to="." method="OnSFXVolumeSliderValueChanged"]
+[connection signal="pressed" from="OptionsUI/VolumeSlidersControl/CloseButton" to="." method="OnCloseButtonPressed" binds= ["OptionsUI"]]
+[connection signal="pressed" from="CreditsUI/ReturnButton" to="." method="OnReturnButtonPressed" binds= ["CreditsUI"]]
