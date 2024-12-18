@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://c35aq45ecay4q"]
+
+[ext_resource type="Script" path="res://scripts/TestLevel.cs" id="1_esbkl"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_edafe"]
+
+[sub_resource type="Sky" id="Sky_2vv08"]
+sky_material = SubResource("PhysicalSkyMaterial_edafe")
+
+[sub_resource type="Environment" id="Environment_mmmwh"]
+background_mode = 2
+sky = SubResource("Sky_2vv08")
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.372549, 0.427451, 0.486275, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_yujd4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep6l0"]
+albedo_color = Color(0.827451, 0.72549, 0.635294, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rqrmm"]
+material = SubResource("StandardMaterial3D_ep6l0")
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55k45"]
+albedo_color = Color(0.555664, 0.406608, 0.594834, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0l22v"]
+material = SubResource("StandardMaterial3D_55k45")
+
+[node name="TestLevel" type="Node3D"]
+script = ExtResource("1_esbkl")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mmmwh")
+camera_attributes = SubResource("CameraAttributesPractical_yujd4")
+
+[node name="Sunlight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.841311, -0.424572, 0.334565, -0.512584, -0.430109, 0.743145, -0.171619, -0.796709, -0.579484, 96.3702, 172.067, -121.302)
+light_color = Color(0.568627, 0.568627, 0.568627, 1)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_rqrmm")
+
+[node name="Tower" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.564872, 0.516652, -1.43056)
+mesh = SubResource("CylinderMesh_0l22v")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.579675, -0.2723, -0.410157)
+light_color = Color(0.940878, 0.39867, 0.148269, 1)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.99496, 0.424037, 3.02857)
+current = true

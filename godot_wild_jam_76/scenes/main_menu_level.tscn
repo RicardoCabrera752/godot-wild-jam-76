@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=3 uid="uid://pnfdn36u61d0"]
+
+[ext_resource type="Script" path="res://scripts/MainMenuLevel.cs" id="1_cbi8m"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_de0pc"]
+
+[sub_resource type="Sky" id="Sky_hcrpp"]
+sky_material = SubResource("PhysicalSkyMaterial_de0pc")
+
+[sub_resource type="Environment" id="Environment_at0fc"]
+background_mode = 2
+sky = SubResource("Sky_hcrpp")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1pwmj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5x1l"]
+albedo_color = Color(0.338671, 0.194052, 0.154071, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ldpoc"]
+material = SubResource("StandardMaterial3D_w5x1l")
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qodi0"]
+albedo_color = Color(0.175068, 0.627005, 0.491964, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b55j0"]
+material = SubResource("StandardMaterial3D_qodi0")
+
+[node name="MainMenuLevel" type="Node3D"]
+script = ExtResource("1_cbi8m")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_at0fc")
+camera_attributes = SubResource("CameraAttributesPractical_1pwmj")
+
+[node name="Sunlight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.841311, -0.424572, 0.334565, -0.512584, -0.430109, 0.743145, -0.171619, -0.796709, -0.579484, 96.3702, 172.067, -121.302)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_ldpoc")
+
+[node name="Tower" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tower"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.564872, 0.516652, -1.43056)
+mesh = SubResource("CylinderMesh_b55j0")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 2.99496, 0.424037, 3.02857)
+current = true

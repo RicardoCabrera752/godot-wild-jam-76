@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2yiqdrpm4spc"]
+[gd_scene load_steps=5 format=3 uid="uid://d2yiqdrpm4spc"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_2n3ar"]
 [ext_resource type="PackedScene" uid="uid://dxvhsjlonok8h" path="res://scenes/ui_manager.tscn" id="2_cdxu6"]
 [ext_resource type="PackedScene" uid="uid://dbrhw7gf3tm8j" path="res://scenes/audio_manager.tscn" id="3_q8osd"]
+[ext_resource type="PackedScene" uid="uid://bthynx4qxheg6" path="res://scenes/world_manager.tscn" id="4_tkp7h"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_2n3ar")
@@ -11,4 +12,8 @@ script = ExtResource("1_2n3ar")
 
 [node name="AudioManager" parent="." instance=ExtResource("3_q8osd")]
 
+[node name="WorldManager" parent="." instance=ExtResource("4_tkp7h")]
+
+[connection signal="AbandonGame" from="UIManager" to="." method="OnAbandonGame"]
 [connection signal="ExitGame" from="UIManager" to="." method="OnExitGame"]
+[connection signal="StartGame" from="UIManager" to="." method="OnStartGame"]

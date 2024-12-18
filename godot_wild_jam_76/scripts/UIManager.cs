@@ -5,7 +5,14 @@ public partial class UIManager : Node
 {
 	// Signals
 	// Exit Game
-	[Signal] public delegate void ExitGameEventHandler();
+	[Signal] 
+	public delegate void ExitGameEventHandler();
+	// Start Game
+	[Signal] 
+	public delegate void StartGameEventHandler(string startingChoice);
+	// Abandon Game
+	[Signal] 
+	public delegate void AbandonGameEventHandler();
 
 	// Exports
 
@@ -37,6 +44,53 @@ public partial class UIManager : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		// Check if the Level has been loaded
+		if(_gameData.IsLoadingDone)
+		{
+			//GetNode<CanvasLayer>("LoadingScreen").Hide();
+			GetNode<Label>("LoadingScreen/PreseAnyKeyLabel").Show();
+
+			if(Input.IsAnythingPressed())
+			{
+				GetNode<CanvasLayer>("LoadingScreen").Hide();
+				GD.Print("GLHF");
+
+				_gameData.IsLoadingDone = false;
+				_gameData.IsLoadingLevel = false;
+				_gameData.IsGamePausable = true;
+			}
+		}
+
+		// Check Player Inputs
+		// Check if the Player has paused the game
+		if(Input.IsActionJustPressed("pause_game"))
+		{
+			if(_gameData.IsGameInProgress && _gameData.IsGamePausable && !_gameData.IsGamePaused && !_gameData.IsGameWon && !_gameData.IsGameLost)
+			{
+				GetTree().Paused = true;
+				GD.Print("Game Paused!");
+
+				GetNode<CanvasLayer>("PauseUI").Show();
+				_gameData.IsGamePaused = true;
+
+				GetNode<CanvasLayer>("ControlsHelpUI").Hide();
+				GetNode<CanvasLayer>("OptionsUI").Hide();
+				GetNode<Control>("PauseUI/AbandonGame").Hide();
+			}
+			// Unpause the Game
+			else
+			{
+				GetTree().Paused = false;
+				GD.Print("Resuming Game!");
+
+				GetNode<CanvasLayer>("PauseUI").Hide();
+				_gameData.IsGamePaused = false;
+
+				GetNode<CanvasLayer>("ControlsHelpUI").Hide();
+				GetNode<CanvasLayer>("OptionsUI").Hide();
+				GetNode<Control>("PauseUI/AbandonGame").Hide();
+			}
+		}
 	}
 
 	// Method to reset all UIs to default values
@@ -47,6 +101,16 @@ public partial class UIManager : Node
 		GetNode<CanvasLayer>("ControlsHelpUI").Hide();
 		GetNode<CanvasLayer>("OptionsUI").Hide();
 		GetNode<CanvasLayer>("CreditsUI").Hide();
+		GetNode<CanvasLayer>("PauseUI").Hide();
+		GetNode<CanvasLayer>("LoadingScreen").Hide();
+	}
+
+	// Method to show the Loading Screen
+	private void ShowLoadingScreen()
+	{
+		string levelName = _gameData.LevelNames[_gameData.CurrentLevelIndex];
+		GetNode<Label>("LoadingScreen/LoadingScreenInformation/VBoxContainer/LevelNameLabel").Text = "Level Name: " + levelName;
+		GetNode<CanvasLayer>("LoadingScreen").Show();
 	}
 
 	//*********************************************************************************************************************
@@ -143,6 +207,56 @@ public partial class UIManager : Node
 
 	//*********************************************************************************************************************
 	// Pause Menu
+	// Handle Resume Button being pressed
+
+	// Handle Controls/Help Button being pressed
+
+	// Handle Options Button being pressed
+
+	// Handle Abandon Game Button being pressed
+	private void OnAbandonGameButtonPressed()
+	{
+		GD.Print("Abandon Game Pressed");
+		GetNode<Control>("PauseUI/AbandonGame").Show();
+	}
+
+	// Handle Confirm Abandon Game Button being pressed
+	private void OnConfirmAbandonGameButtonPressed()
+	{
+		GD.Print("Confirm Abandon Game");
+		ResetAllUI();
+
+		EmitSignal(SignalName.AbandonGame);
+	}
+
+	// Handle Cancel Abandon Game Button being pressed
+	private void OnCancelAbandonGameButtonPressed()
+	{
+		GD.Print("Cancel Abandon Game");
+		GetNode<Control>("PauseUI/AbandonGame").Hide();
+	}
+
+	//*********************************************************************************************************************
+	// Start Game Menu
+	// Handle Select Button being pressed
+	private void OnSelectButtonPressed(string startingChoice)
+	{
+		string message;
+
+		// increment current level index
+		//_gameData.CurrentLevelIndex++;
+
+		if(startingChoice == "Jumbo")
+		{
+			message = "Selected Tank: " + startingChoice;
+			GD.Print(message);
+
+			EmitSignal(SignalName.StartGame, startingChoice);
+		}
+
+		GetNode<CanvasLayer>("StartMenuUI").Hide();
+		ShowLoadingScreen();
+	}
 
 	//*********************************************************************************************************************
 	// Battle UI

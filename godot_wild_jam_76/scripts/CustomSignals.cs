@@ -4,9 +4,15 @@ using System;
 public partial class CustomSignals : Node
 {
 	// Signals
-	[Signal] public delegate void ChangeMasterVolumeEventHandler(float value);
-	[Signal] public delegate void ChangeMusicVolumeEventHandler(float value);
-	[Signal] public delegate void ChangeSFXVolumeEventHandler(float value);
+	[Signal] 
+	public delegate void ChangeMasterVolumeEventHandler(float value);
+	[Signal] 
+	public delegate void ChangeMusicVolumeEventHandler(float value);
+	[Signal] 
+	public delegate void ChangeSFXVolumeEventHandler(float value);
+
+	// Level Loading
+	[Signal] public delegate void LoadLevelEventHandler(int index);
 
 	// Methods
 

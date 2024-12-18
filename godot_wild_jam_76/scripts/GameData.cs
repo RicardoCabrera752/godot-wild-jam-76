@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class GameData : Node
 {
@@ -27,6 +28,16 @@ public partial class GameData : Node
 	public bool IsMainMenuWorldDead { get; set; } = false;
 	public bool IsGameMapWorldDead { get; set; } = false;
 	public bool IsBattleMapWorldDead { get; set; } = false;
+	public bool IsLoadingLevel { get; set; } = false;
+	public bool IsLoadingDone { get; set; } = false;
+	public float LevelLoadingProgress { get; set; } = 0.0f;
+
+	// Index of current level that is loaded
+	public int CurrentLevelIndex { get; set; } = 0;
+	// List of Level Names
+	public List<string> LevelNames { get; set; } = new List<string>();
+	// Dictionary of Level Paths: pair (nodePath, path)
+	public Dictionary<string, Tuple<string, string>> LevelPaths { get; set; } = new Dictionary<string, Tuple<string, string>>();
 
 	// Dialogue Metadata
 
@@ -52,16 +63,53 @@ public partial class GameData : Node
 	public void ResetAllGameVariables()
 	{
 		// General Metadata
+		IsGamePaused = false;
+		IsGamePausable  = false;
+		IsGameInProgress  = false;
+		IsGameWon  = false;
+		IsGameLost  = false;
 
 		// Audio Metadata
 
 		// World Metadata
+		IsMainMenuWorldDead = false;
+		IsGameMapWorldDead = false;
+		IsBattleMapWorldDead = false;
+		IsLoadingLevel = false;
+		IsLoadingDone = false;
+		LevelLoadingProgress = 0.0f;
+		CurrentLevelIndex = 0;
 
 		// Dialogue Metadata
 
 		// Player Metadata
+		HellFrostLevel = 0;
+		CurrentMission = 0;
 
 		// Battle Metadata
+		IsBattleWon = false;
+		IsBattleLost = false;
+	}
+
+	// Method to Initialize the Level Names
+	public void InitializeLevelNames()
+	{
+		LevelNames.Add("Main Menu");
+		LevelNames.Add("Test");
+		LevelNames.Add("Test2");
+		//LevelPathNames.Add("The Trenches");
+		//LevelPathNames.Add("The Wall");
+		//LevelPathNames.Add("The Interior");
+		//LevelPathNames.Add("The Fotress");
+		//LevelPathNames.Add("The Gate");
+	}
+
+	// Method to Initialize the Level Paths
+	public void InitializeLevelPaths()
+	{
+		LevelPaths.Add("Main Menu", Tuple.Create("MainMenuLevel", "res://scenes/main_menu_level.tscn"));
+		LevelPaths.Add("Test", Tuple.Create("TestLevel", "res://scenes/test_level.tscn"));
+		LevelPaths.Add("Test2", Tuple.Create("TestLevel2", "res://scenes/test_level_2.tscn"));
 	}
 
 	public override void _Ready()
