@@ -42,9 +42,17 @@ public partial class WorldManager : Node3D
 		_customSignals = GetTree().Root.GetNode<CustomSignals>("CustomSignals");
 
 		// Load the Main Menu Level on Game Startup
-		MainMenuLevelScene = ResourceLoader.Load<PackedScene>(MainMenuLevelPath);
-		MainMenuLevelInstance = MainMenuLevelScene.Instantiate<MainMenuLevel>();
-		AddChild(MainMenuLevelInstance);
+		//MainMenuLevelScene = ResourceLoader.Load<PackedScene>(MainMenuLevelPath);
+		//MainMenuLevelInstance = MainMenuLevelScene.Instantiate<MainMenuLevel>();
+		//AddChild(MainMenuLevelInstance);
+
+		//ResourceLoader.LoadThreadedRequest(MainMenuLevelPath, "", false);
+		ResourceLoader.LoadThreadedRequest(MainMenuLevelPath, "", false, ResourceLoader.CacheMode.Ignore);
+		var levelScene = (PackedScene)ResourceLoader.LoadThreadedGet(MainMenuLevelPath);
+
+		var level = levelScene.Instantiate();
+
+		AddChild(level);
 
 		// Connect
 		_customSignals.LoadLevel += HandleLoadLevel;
@@ -87,10 +95,12 @@ public partial class WorldManager : Node3D
 			else if(status == ResourceLoader.ThreadLoadStatus.InvalidResource)
 			{
 				GD.Print("Invalid!");
+				SetProcess(false);
 			}
 			else if(status == ResourceLoader.ThreadLoadStatus.Failed)
 			{
 				GD.Print("Failed!");
+				SetProcess(false);
 			}
 		}
 	}
@@ -156,7 +166,11 @@ public partial class WorldManager : Node3D
 			//AddChild(levelInstance);
 
 			GD.Print("Loading Done! Level was already Cached!");
+			_gameData.IsLoadingLevel = true;
+			_gameData.IsLoadingDone = false;
+			ResourceLoader.LoadThreadedRequest(LevelPath, "", false,ResourceLoader.CacheMode.Replace);
 
+			/*
 			var levelScene = (PackedScene)ResourceLoader.LoadThreadedGet(LevelPath);
 			var progress = new Godot.Collections.Array();
 			var status = ResourceLoader.LoadThreadedGetStatus(LevelPath, progress);
@@ -170,6 +184,7 @@ public partial class WorldManager : Node3D
 			_gameData.IsLoadingLevel = false;
 			_gameData.IsLoadingDone = true;
 			GetTree().Root.GetNode<ProgressBar>("Main/UIManager/LoadingScreen/LoadingProgressBar").Value = 100;
+			*/
 		}
 		else 
 		{
@@ -177,7 +192,8 @@ public partial class WorldManager : Node3D
 			_gameData.IsLoadingLevel = true;
 			_gameData.IsLoadingDone = false;
 			_gameData.IsGamePausable = false;
-			ResourceLoader.LoadThreadedRequest(LevelPath, "", true);
+			//ResourceLoader.LoadThreadedRequest(LevelPath, "", false);
+			ResourceLoader.LoadThreadedRequest(LevelPath, "", false, ResourceLoader.CacheMode.Ignore);
 
 			string loadMessage = "Loading Level: " + nextLevelName;
 			GD.Print(loadMessage);

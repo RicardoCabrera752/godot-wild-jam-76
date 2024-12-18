@@ -53,7 +53,8 @@ public partial class Main : Node
 
 		//int index = _gameData.CurrentLevelIndex;
 		//GD.Print(index);
-		int index = _gameData.CurrentLevelIndex + 1;
+		//int index = _gameData.CurrentLevelIndex + 1;
+		int index = 1;
 		_customSignals.EmitSignal(nameof(CustomSignals.LoadLevel), index);
 		_gameData.IsGameInProgress = true;
 		
@@ -62,7 +63,7 @@ public partial class Main : Node
 	// Handle Abandon Game
 	private void OnAbandonGame()
 	{
-		int index = 2;
+		int index = 0;
 		_customSignals.EmitSignal(nameof(CustomSignals.LoadLevel), index);
 
 		//_gameData.ResetAllGameVariables();

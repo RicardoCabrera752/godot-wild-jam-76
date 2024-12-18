@@ -225,7 +225,8 @@ public partial class UIManager : Node
 	{
 		GD.Print("Confirm Abandon Game");
 		ResetAllUI();
-
+		_gameData.IsGamePaused = false;
+		GetTree().Paused = false;
 		EmitSignal(SignalName.AbandonGame);
 	}
 
