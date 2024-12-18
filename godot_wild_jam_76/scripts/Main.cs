@@ -67,5 +67,8 @@ public partial class Main : Node
 		_customSignals.EmitSignal(nameof(CustomSignals.LoadLevel), index);
 
 		//_gameData.ResetAllGameVariables();
+		_gameData.IsGamePaused = false;
+		_gameData.IsGamePausable = false;
+		_gameData.IsGameInProgress = false;
 	}
 }

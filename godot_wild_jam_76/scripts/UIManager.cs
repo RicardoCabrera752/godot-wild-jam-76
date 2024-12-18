@@ -78,7 +78,7 @@ public partial class UIManager : Node
 				GetNode<Control>("PauseUI/AbandonGame").Hide();
 			}
 			// Unpause the Game
-			else
+			else if (_gameData.IsGameInProgress && _gameData.IsGamePausable && _gameData.IsGamePaused && !_gameData.IsGameWon && !_gameData.IsGameLost)
 			{
 				GetTree().Paused = false;
 				GD.Print("Resuming Game!");
@@ -177,7 +177,7 @@ public partial class UIManager : Node
 
 		if(_gameData.IsGamePaused)
 		{
-
+			GetNode<CanvasLayer>(currentMenu).Hide();
 		}
 		else 
 		{
@@ -208,6 +208,18 @@ public partial class UIManager : Node
 	//*********************************************************************************************************************
 	// Pause Menu
 	// Handle Resume Button being pressed
+	private void OnResumeButtonPressed()
+	{
+		GetTree().Paused = false;
+		GD.Print("Resuming Game!");
+
+		GetNode<CanvasLayer>("PauseUI").Hide();
+		_gameData.IsGamePaused = false;
+
+		GetNode<CanvasLayer>("ControlsHelpUI").Hide();
+		GetNode<CanvasLayer>("OptionsUI").Hide();
+		GetNode<Control>("PauseUI/AbandonGame").Hide();
+	}
 
 	// Handle Controls/Help Button being pressed
 
@@ -224,9 +236,12 @@ public partial class UIManager : Node
 	private void OnConfirmAbandonGameButtonPressed()
 	{
 		GD.Print("Confirm Abandon Game");
+
 		ResetAllUI();
-		_gameData.IsGamePaused = false;
+		//_gameData.IsGamePaused = false;
+		// Important!!! need to unpause game
 		GetTree().Paused = false;
+
 		EmitSignal(SignalName.AbandonGame);
 	}
 

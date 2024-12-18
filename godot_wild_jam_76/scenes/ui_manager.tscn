@@ -296,6 +296,7 @@ grow_vertical = 2
 text = "Select"
 
 [node name="ControlsHelpUI" type="CanvasLayer" parent="."]
+layer = 2
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="ControlsHelpUI"]
@@ -486,6 +487,7 @@ theme = ExtResource("1_jice0")
 text = "Close"
 
 [node name="OptionsUI" type="CanvasLayer" parent="."]
+layer = 2
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="OptionsUI"]
@@ -926,6 +928,9 @@ horizontal_alignment = 1
 [connection signal="value_changed" from="OptionsUI/VolumeSlidersControl/VolumeSliders/SFXVolumeSlider" to="." method="OnSFXVolumeSliderValueChanged"]
 [connection signal="pressed" from="OptionsUI/VolumeSlidersControl/CloseButton" to="." method="OnCloseButtonPressed" binds= ["OptionsUI"]]
 [connection signal="pressed" from="CreditsUI/ReturnButton" to="." method="OnReturnButtonPressed" binds= ["CreditsUI"]]
+[connection signal="pressed" from="PauseUI/PauseMenu/PauseMenuButtons/ResumeButton" to="." method="OnResumeButtonPressed"]
+[connection signal="pressed" from="PauseUI/PauseMenu/PauseMenuButtons/ControlsHelpButton" to="." method="OnControlsHelpButtonPressed"]
+[connection signal="pressed" from="PauseUI/PauseMenu/PauseMenuButtons/OptionsButton" to="." method="OnOptionsButtonPressed"]
 [connection signal="pressed" from="PauseUI/PauseMenu/PauseMenuButtons/AbandonGameButton" to="." method="OnAbandonGameButtonPressed"]
 [connection signal="pressed" from="PauseUI/AbandonGame/ConfirmAbandonGameButton" to="." method="OnConfirmAbandonGameButtonPressed"]
 [connection signal="pressed" from="PauseUI/AbandonGame/CancelAbandonGameButton" to="." method="OnCancelAbandonGameButtonPressed"]
